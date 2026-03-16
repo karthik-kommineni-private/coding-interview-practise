@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import './SlideViewer.css';
 import CodeBlock from './CodeBlock';
 import AlgorithmVisualizer from './AlgorithmVisualizer';
 import CodePractice from './CodePractice';
 
 function SlideViewer({ pattern, slide, slideIndex, totalSlides, onNext, onPrev, isFirstSlide, onBackToHome }) {
+  const [showSyntax, setShowSyntax] = useState(false);
+
   return (
     <div className="slide-viewer">
       <div className="slide-header">
@@ -24,16 +27,28 @@ function SlideViewer({ pattern, slide, slideIndex, totalSlides, onNext, onPrev, 
           <p>{slide.concept}</p>
         </div>
 
-        <div className="complexity-section">
-          <div className="complexity-item">
-            <span className="complexity-label">Time:</span>
-            <code>{slide.timeComplexity}</code>
+        {(slide.timeComplexity || slide.spaceComplexity) && (
+          <div className="complexity-section">
+            {slide.timeComplexity && (
+              <div className="complexity-badge time" title={slide.timeComplexityExplanation || ''}>
+                <span className="complexity-label">⏱️ Time Complexity</span>
+                <span className="complexity-value">{slide.timeComplexity}</span>
+                {slide.timeComplexityExplanation && (
+                  <div className="complexity-tooltip">{slide.timeComplexityExplanation}</div>
+                )}
+              </div>
+            )}
+            {slide.spaceComplexity && (
+              <div className="complexity-badge space" title={slide.spaceComplexityExplanation || ''}>
+                <span className="complexity-label">💾 Space Complexity</span>
+                <span className="complexity-value">{slide.spaceComplexity}</span>
+                {slide.spaceComplexityExplanation && (
+                  <div className="complexity-tooltip">{slide.spaceComplexityExplanation}</div>
+                )}
+              </div>
+            )}
           </div>
-          <div className="complexity-item">
-            <span className="complexity-label">Space:</span>
-            <code>{slide.spaceComplexity}</code>
-          </div>
-        </div>
+        )}
 
         {slide.keyPoints && slide.keyPoints.length > 0 && (
           <div className="key-points-section">
@@ -50,6 +65,28 @@ function SlideViewer({ pattern, slide, slideIndex, totalSlides, onNext, onPrev, 
           <div className="template-section">
             <h3>Template</h3>
             <CodeBlock code={slide.template} language="python" />
+            {slide.usefulSyntax && (
+              <div className="syntax-reference">
+                <button
+                  className="syntax-toggle"
+                  onClick={() => setShowSyntax(!showSyntax)}
+                >
+                  {showSyntax ? '▼' : '▶'} Useful Syntax & Tools
+                </button>
+                {showSyntax && (
+                  <div className="syntax-list">
+                    {slide.usefulSyntax.map((item, index) => (
+                      <div key={index} className="syntax-tag">
+                        {item.name}
+                        <div className="syntax-tooltip">
+                          <code>{item.example}</code>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             <CodePractice template={slide.template} patternTitle={slide.title} />
           </div>
         )}

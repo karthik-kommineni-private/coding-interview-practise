@@ -1,10 +1,16 @@
 .code-block-wrapper {
   background: #0d1117 !important;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  margin: 16px 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  margin: 32px 0;
+  border: 3px solid var(--accent-border);
+  transition: all 0.3s ease;
+}
+
+.code-block-wrapper:hover {
+  border-color: var(--accent);
+  box-shadow: 0 16px 48px rgba(249, 115, 22, 0.2);
 }
 
 .code-block-header {
@@ -89,53 +95,56 @@
 .line-numbers {
   display: flex;
   flex-direction: column;
-  padding: 16px 8px;
-  background: rgba(0, 0, 0, 0.3);
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 24px 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border-right: 3px solid rgba(249, 115, 22, 0.2);
   user-select: none;
-  min-width: 50px;
+  min-width: 70px;
 }
 
 .line-number {
   font-family: var(--mono);
-  font-size: 13px;
-  line-height: 1.6;
-  color: #6e7681;
+  font-size: 16px;
+  line-height: 2;
+  color: #8b949e;
   text-align: right;
-  padding-right: 12px;
+  padding-right: 16px;
+  font-weight: 600;
 }
 
 .code-pre {
   flex: 1;
   margin: 0;
-  padding: 16px 20px;
+  padding: 24px 28px;
   overflow: visible;
 }
 
 .code-element {
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 2;
   color: #e6edf3;
   background: transparent;
   padding: 0;
   display: block;
   white-space: pre;
+  font-weight: 500;
 }
 
-/* Syntax highlighting colors - Vibrant! */
+/* Syntax highlighting colors - Vibrant with Orange theme! */
 .code-element .keyword {
-  color: #ff6b9d;
+  color: #ff79c6;
   font-weight: 700;
 }
 
 .code-element .string {
   color: #a5d6ff;
+  font-weight: 500;
 }
 
 .code-element .number {
-  color: #79c0ff;
-  font-weight: 600;
+  color: #ffab70;
+  font-weight: 700;
 }
 
 .code-element .comment {
@@ -145,13 +154,14 @@
 }
 
 .code-element .function {
-  color: #d2a8ff;
-  font-weight: 600;
+  color: #ffa657;
+  font-weight: 700;
 }
 
 .code-element .decorator {
-  color: #ffa657;
+  color: #ff9e64;
   font-style: italic;
+  font-weight: 600;
 }
 
 /* Custom scrollbar for code block */
@@ -177,8 +187,9 @@
 
 @media (max-width: 768px) {
   .code-block-wrapper {
-    border-radius: 8px;
-    margin: 12px 0;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-width: 2px;
   }
 
   .code-block-header {
@@ -195,20 +206,23 @@
   }
 
   .line-numbers {
-    min-width: 40px;
-    padding: 12px 6px;
+    min-width: 50px;
+    padding: 16px 8px;
+    border-right-width: 2px;
   }
 
   .line-number {
-    font-size: 12px;
-    padding-right: 8px;
+    font-size: 14px;
+    padding-right: 10px;
+    line-height: 1.8;
   }
 
   .code-pre {
-    padding: 12px 16px;
+    padding: 16px 20px;
   }
 
   .code-element {
-    font-size: 13px;
+    font-size: 15px;
+    line-height: 1.8;
   }
 }

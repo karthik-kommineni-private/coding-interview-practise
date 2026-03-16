@@ -1,0 +1,130 @@
+.code-block-hybrid-wrapper {
+  position: relative;
+}
+
+.hybrid-zones-overlay {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hybrid-zone-line {
+  height: 36px;
+  border-left: 3px solid transparent;
+}
+
+.hybrid-zone-line.zone-init {
+  background: rgba(59, 130, 246, 0.06);
+  border-left-color: rgba(59, 130, 246, 0.3);
+}
+
+.hybrid-zone-line.zone-loop {
+  background: rgba(249, 115, 22, 0.06);
+  border-left-color: rgba(249, 115, 22, 0.3);
+}
+
+.hybrid-zone-line.zone-return {
+  background: rgba(16, 185, 129, 0.06);
+  border-left-color: rgba(16, 185, 129, 0.3);
+}
+
+.hybrid-annotations-overlay {
+  position: absolute;
+  right: -320px;
+  top: 0;
+  width: 300px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hybrid-annotation {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.hybrid-annotation::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 12px solid var(--border);
+}
+
+.hybrid-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hybrid-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.hybrid-label {
+  color: var(--text-h);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.hybrid-complexity {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.annotation-setup {
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.annotation-critical {
+  border-color: var(--accent-border);
+  background: rgba(249, 115, 22, 0.1);
+}
+
+.annotation-update {
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+@media (max-width: 1400px) {
+  .hybrid-annotations-overlay {
+    position: static;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .hybrid-annotation {
+    position: static;
+    margin-bottom: 12px;
+  }
+
+  .hybrid-annotation::before {
+    display: none;
+  }
+}

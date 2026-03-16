@@ -1,6 +1,25 @@
+import { useState, useEffect } from 'react';
 import './HomePage.css';
+import MatrixRain from './MatrixRain';
+import BreathingExercise from './BreathingExercise';
+import AmbientSound from './AmbientSound';
+import BackgroundPattern from './BackgroundPattern';
+import PomodoroTimer from './PomodoroTimer';
+import ZenSettings from './ZenSettings';
 
-function HomePage({ patterns, onPatternSelect }) {
+function HomePage({ patterns, onPatternSelect, onViewTest }) {
+  const [showBreathing, setShowBreathing] = useState(false);
+  const [backgroundPattern, setBackgroundPattern] = useState('none');
+  const [matrixEnabled, setMatrixEnabled] = useState(true);
+
+  // Load background pattern preference
+  useEffect(() => {
+    const savedPattern = localStorage.getItem('backgroundPattern');
+    const savedMatrix = localStorage.getItem('matrixEnabled');
+
+    if (savedPattern) setBackgroundPattern(savedPattern);
+    if (savedMatrix !== null) setMatrixEnabled(savedMatrix === 'true');
+  }, []);
   // Group patterns by category
   const categories = [
     {
@@ -85,9 +104,39 @@ function HomePage({ patterns, onPatternSelect }) {
 
   return (
     <div className="home-page">
+      {showBreathing && <BreathingExercise onComplete={() => setShowBreathing(false)} />}
+
+      {/* Zen Features */}
+      <button
+        className="breathing-trigger-btn"
+        onClick={() => setShowBreathing(true)}
+        title="Take a mindful breath"
+      >
+        🌿
+      </button>
+
+      <AmbientSound />
+      <PomodoroTimer />
+      <ZenSettings
+        currentPattern={backgroundPattern}
+        onPatternChange={setBackgroundPattern}
+      />
+
+      {/* Background Effects */}
+      {matrixEnabled && <MatrixRain />}
+      <BackgroundPattern pattern={backgroundPattern} opacity={0.15} />
       <header className="page-header">
-        <h1 className="page-title">Coding Interview Patterns</h1>
-        <p className="page-subtitle">{patterns.length} patterns • {patterns.reduce((acc, p) => acc + p.slides.length, 0)} slides</p>
+        <div className="header-content">
+          <div>
+            <h1 className="page-title">Coding Interview Patterns</h1>
+            <p className="page-subtitle">{patterns.length} patterns • {patterns.reduce((acc, p) => acc + p.slides.length, 0)} slides</p>
+          </div>
+          {onViewTest && (
+            <button className="test-page-button" onClick={onViewTest}>
+              🎨 View Code Styles Test
+            </button>
+          )}
+        </div>
       </header>
 
       <div className="categories-grid">

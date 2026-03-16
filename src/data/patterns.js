@@ -7,7 +7,9 @@ export const patterns = [
         title: '5 Variations of Sliding Window',
         concept: 'Used for problems involving contiguous subarrays or substrings',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Each element is visited at most twice (once by end pointer, once by start pointer)',
         spaceComplexity: 'O(k) where k is window size',
+        spaceComplexityExplanation: 'Additional space needed for storing window elements or tracking seen elements (set/map)',
         keyPoints: [
           'Character Constraint: No duplicate/repeating characters',
           'Length Constraint: Fixed window size (k elements)',
@@ -26,6 +28,16 @@ export const patterns = [
 
         result = max(result, end - start + 1)
     return result`,
+        usefulSyntax: [
+          { name: 'enumerate', example: 'for i, val in enumerate(arr):' },
+          { name: 'defaultdict', example: 'from collections import defaultdict; d = defaultdict(int)' },
+          { name: 'Counter', example: 'from collections import Counter; Counter([1,2,2]) → {1:1, 2:2}' },
+          { name: 'set', example: 'seen = set(); seen.add(x); x in seen' },
+          { name: 'dict.get', example: 'count.get(key, 0)  # default 0 if missing' },
+          { name: 'deque', example: 'from collections import deque; q = deque()' },
+          { name: 'sum', example: 'sum(arr[start:end+1])' },
+          { name: 'ord', example: 'ord("a") - ord("a")  # convert char to 0-25' }
+        ],
         walkthrough: [
           'Initialize start pointer at 0 and result variable',
           'Loop through array with end pointer expanding the window',
@@ -40,7 +52,9 @@ export const patterns = [
         title: 'Variation 1: Character Constraint',
         concept: 'Find longest substring without duplicate characters',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Single pass through string with each character processed at most twice',
         spaceComplexity: 'O(k) for hashmap/set',
+        spaceComplexityExplanation: 'Set stores at most k unique characters in current window (min(n, alphabet_size))',
         keyPoints: [
           'Use a Set or HashMap to track characters in window',
           'When duplicate found, shrink window from left',
@@ -57,6 +71,13 @@ export const patterns = [
         seen.add(s[right])
         maxLen = max(maxLen, right - left + 1)
     return maxLen`,
+        usefulSyntax: [
+          { name: 'set ops', example: 'char in seen; seen.add(x); seen.remove(x)' },
+          { name: 'dict map', example: 'char_idx = {}; char_idx[c] = i' },
+          { name: 'slicing', example: 's[left:right+1]  # substring inclusive' },
+          { name: 'ord', example: 'ord("c") - ord("a")  # char to index 0-25' },
+          { name: 'len(set)', example: 'len(set(s))  # count unique chars' }
+        ],
         walkthrough: [
           'Use a set to track characters in current window',
           'Expand window by moving right pointer through the string',
@@ -71,7 +92,9 @@ export const patterns = [
         title: 'Variation 2: Length Constraint (Fixed Window)',
         concept: 'Find max/min value in subarray of fixed size k',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Single pass through array, adding and removing one element at each step',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only storing constant variables (curSum, maxSum), no additional data structures',
         keyPoints: [
           'Window size is fixed at k elements',
           'Slide the window one element at a time',
@@ -99,7 +122,9 @@ export const patterns = [
         title: 'Variation 3: Sum Constraint',
         concept: 'Find longest subarray where sum <= k',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Two pointers traverse array, each element added and removed at most once',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only tracking window sum and pointers, no extra space proportional to input',
         keyPoints: [
           'Expand window by adding elements',
           'Shrink window when sum exceeds k',
@@ -129,7 +154,9 @@ export const patterns = [
         title: 'Variation 4: Product Constraint',
         concept: 'Count subarrays where product < k',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Single pass through array with two pointers, each element processed at most twice',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only storing running product and counter variables',
         keyPoints: [
           'Count all valid subarrays, not just longest',
           'Every new element adds (right - left + 1) subarrays',
@@ -161,7 +188,9 @@ export const patterns = [
         title: 'Variation 5: Number Constraint',
         concept: 'Longest substring with at most k occurrences',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Two pointers traverse string once, linear time for single pass',
         spaceComplexity: 'O(1) or O(k) for frequency map',
+        spaceComplexityExplanation: 'Constant space for counter, or O(k) if using hashmap for multiple character types',
         keyPoints: [
           'Track count/frequency of specific element',
           'Example: At most one "L" character',
@@ -199,7 +228,9 @@ export const patterns = [
         title: 'Two Pointers Pattern',
         concept: 'Use two pointers, typically starting at different positions, moving based on conditions',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Each element visited once with pointers moving toward each other',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only storing pointer variables, no additional data structures needed',
         keyPoints: [
           'Opposite Direction: Start from both ends, move towards center',
           'Same Direction: Both start from beginning, move at different speeds',
@@ -223,6 +254,13 @@ def fastSlow(arr):
         if condition:
             slow += 1
     return slow`,
+        usefulSyntax: [
+          { name: 'sort', example: 'arr.sort(); arr.sort(reverse=True)' },
+          { name: 'sorted', example: 'sorted(arr)  # returns new list' },
+          { name: 'reverse', example: 'arr[::-1]' },
+          { name: 'str methods', example: 's.lower(); s.upper(); s.isalnum()' },
+          { name: 'swap', example: 'arr[i], arr[j] = arr[j], arr[i]' }
+        ],
         walkthrough: [
           'Opposite Direction: Start left at beginning, right at end',
           'Move pointers toward each other based on comparison',
@@ -237,7 +275,9 @@ def fastSlow(arr):
         title: 'Example 1: Palindrome Check',
         concept: 'Check if a string is a palindrome using two pointers',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'At most n/2 comparisons, checking half the string from both ends',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only two pointer variables needed, no additional space',
         keyPoints: [
           'Start from both ends of the string',
           'Move towards center comparing characters',
@@ -333,7 +373,9 @@ def fastSlow(arr):
         title: 'Example 2: Two Sum (Sorted Array)',
         concept: 'Find two numbers in sorted array that sum to target',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Pointers meet in middle at most after n steps, each element considered once',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only two pointer variables, no extra data structures',
         keyPoints: [
           'Array must be sorted',
           'If sum too large, move right pointer left',
@@ -369,7 +411,9 @@ def fastSlow(arr):
         title: 'Monotonic Stack Pattern',
         concept: 'Maintain a stack that keeps elements in increasing or decreasing order',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Each element pushed and popped at most once, amortized O(1) per element',
         spaceComplexity: 'O(n)',
+        spaceComplexityExplanation: 'Stack can store up to n indices in worst case (e.g., decreasing sequence)',
         keyPoints: [
           'Monotonic Increasing: Elements in stack are in increasing order',
           'Monotonic Decreasing: Elements in stack are in decreasing order',
@@ -397,6 +441,12 @@ def nextSmallerElement(arr):
             result[idx] = arr[i]
         stack.append(i)
     return result`,
+        usefulSyntax: [
+          { name: 'stack ops', example: 'stack = []; stack.append(x); stack.pop(); stack[-1]' },
+          { name: 'init array', example: '[-1] * n  # n elements with -1' },
+          { name: 'backwards', example: 'range(len(arr)-1, -1, -1)' },
+          { name: 'while guard', example: 'while stack and condition:' }
+        ],
         walkthrough: [
           'Stack stores indices (not values) to track positions',
           'Initialize result array with -1 (default: no greater element)',
@@ -411,7 +461,9 @@ def nextSmallerElement(arr):
         title: 'Example: Daily Temperatures',
         concept: 'Find how many days until a warmer temperature',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Each temperature pushed and popped from stack at most once',
         spaceComplexity: 'O(n)',
+        spaceComplexityExplanation: 'Stack stores indices, worst case all n temperatures if strictly decreasing',
         keyPoints: [
           'Use monotonic decreasing stack',
           'Stack stores indices, not temperatures',
@@ -448,7 +500,9 @@ def nextSmallerElement(arr):
         title: 'Prefix Sum Pattern',
         concept: 'Calculate the running sum of a subarray efficiently',
         timeComplexity: 'O(n) preprocessing, O(1) per query',
+        timeComplexityExplanation: 'Build prefix array in O(n), then each range sum query takes O(1) using subtraction',
         spaceComplexity: 'O(n)',
+        spaceComplexityExplanation: 'Prefix array stores n+1 cumulative sums',
         keyPoints: [
           'prefix[i] = sum of elements from 0 to i',
           'Range sum [left, right] = prefix[right] - prefix[left-1]',
@@ -475,6 +529,12 @@ def subarraySum(arr, k):
             count += hashmap[total - k]
         hashmap[total] = hashmap.get(total, 0) + 1
     return count`,
+        usefulSyntax: [
+          { name: 'defaultdict', example: 'from collections import defaultdict; d = defaultdict(int)' },
+          { name: 'dict ops', example: 'key in d; d.get(key, 0)' },
+          { name: 'init list', example: '[0] * (n+1)  # n+1 zeros' },
+          { name: 'sum slice', example: 'sum(arr[i:j+1])' }
+        ],
         walkthrough: [
           'Build prefix array where prefix[i] = sum of first i elements',
           'Start with prefix[0] = 0 for empty subarray',
@@ -489,7 +549,9 @@ def subarraySum(arr, k):
         title: 'Class-Based Implementation',
         concept: 'Reusable prefix sum class for multiple range queries',
         timeComplexity: 'O(n) init, O(1) per query',
+        timeComplexityExplanation: 'Constructor builds prefix array in O(n), each rangeSum call is O(1) arithmetic',
         spaceComplexity: 'O(n)',
+        spaceComplexityExplanation: 'Stores n cumulative sums in prefix array',
         keyPoints: [
           'Initialize once, query many times',
           'Prefix array has n+1 elements (starts with 0)',
@@ -528,7 +590,9 @@ def subarraySum(arr, k):
         title: 'Classic',
         concept: 'Search in a sorted array. Cut the array by half each time. Return the target.',
         timeComplexity: 'O(log n)',
+        timeComplexityExplanation: 'Search space halved each iteration: n → n/2 → n/4 → ... → 1, which is log₂(n) steps',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only three pointer variables (low, high, mid), no recursion or extra arrays',
         keyPoints: [
           'Array must be sorted',
           'Compare middle element with target',
@@ -547,6 +611,12 @@ def subarraySum(arr, k):
         else:
             high = mid - 1
     return -1  # not found`,
+        usefulSyntax: [
+          { name: 'mid calc', example: 'mid = (low + high) // 2' },
+          { name: 'bisect_left', example: 'import bisect; bisect.bisect_left(arr, x)' },
+          { name: 'bisect_right', example: 'bisect.bisect_right(arr, x)' },
+          { name: 'insort', example: 'bisect.insort(arr, x)  # insert sorted' }
+        ],
         walkthrough: [
           'Initialize search range: low = 0, high = last index',
           'Calculate mid point: (low + high) // 2',
@@ -561,7 +631,9 @@ def subarraySum(arr, k):
         title: 'Left-most Occurrence',
         concept: 'Given an array where the target is a duplicate element, find the left-most occurrence (first) of the target.',
         timeComplexity: 'O(log n)',
+        timeComplexityExplanation: 'Same binary search logic, search space halved each iteration, log₂(n) iterations',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only pointer variables, no additional data structures',
         keyPoints: [
           'Even if target is found, continue searching left',
           'Move high pointer to mid - 1',
@@ -592,7 +664,9 @@ def subarraySum(arr, k):
         title: 'Right-most Occurrence',
         concept: 'Given an array where the target is a duplicate element, find the right-most (last) occurrence of the target.',
         timeComplexity: 'O(log n)',
+        timeComplexityExplanation: 'Binary search halves search space each time, log₂(n) iterations to find last occurrence',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only using pointer variables, constant space',
         keyPoints: [
           'Even if target is found, continue searching right',
           'Move low pointer to mid + 1',
@@ -623,7 +697,9 @@ def subarraySum(arr, k):
         title: 'Search Range',
         concept: 'Perform binary search on a range of elements, instead of an array.',
         timeComplexity: 'O(log n)',
+        timeComplexityExplanation: 'Range halved each iteration, takes log₂(high - low) steps to converge',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only storing low, high, mid variables',
         keyPoints: [
           'Low and high define a range, not array indices',
           'Use a check() function to validate mid',
@@ -658,7 +734,9 @@ def subarraySum(arr, k):
         title: 'Linked List Patterns',
         concept: 'Master common linked list manipulation techniques',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Most linked list operations require traversing n nodes once',
         spaceComplexity: 'O(1)',
+        spaceComplexityExplanation: 'Only pointer manipulation, no additional data structures (for iterative solutions)',
         keyPoints: [
           'Fast & Slow Pointers (Floyd\'s Cycle Detection)',
           'Reverse Linked List (Iterative & Recursive)',
@@ -697,7 +775,9 @@ def reverseList(head):
         title: 'Tree Traversal Patterns',
         concept: 'DFS and BFS approaches for tree problems',
         timeComplexity: 'O(n)',
+        timeComplexityExplanation: 'Visit each of n nodes exactly once during traversal',
         spaceComplexity: 'O(h) for DFS, O(w) for BFS',
+        spaceComplexityExplanation: 'DFS uses recursion stack of height h (worst case O(n) for skewed tree). BFS uses queue of width w (worst case O(n) for complete tree)',
         keyPoints: [
           'Inorder, Preorder, Postorder (DFS)',
           'Level Order Traversal (BFS)',
@@ -736,7 +816,9 @@ def levelOrder(root):
         title: 'Graph Traversal',
         concept: 'DFS, BFS, and topological sort for graphs',
         timeComplexity: 'O(V + E)',
+        timeComplexityExplanation: 'Visit all V vertices and explore all E edges once (adjacency list representation)',
         spaceComplexity: 'O(V)',
+        spaceComplexityExplanation: 'Visited set stores V vertices, recursion/queue can hold up to V nodes',
         keyPoints: [
           'DFS for connected components',
           'BFS for shortest path',
@@ -773,7 +855,9 @@ def bfs(graph, start):
         title: 'DP Patterns',
         concept: 'Breaking down problems into overlapping subproblems',
         timeComplexity: 'O(n) to O(n²)',
+        timeComplexityExplanation: '1D DP fills n states once = O(n). 2D DP fills m×n grid = O(m×n)',
         spaceComplexity: 'O(n) to O(n²)',
+        spaceComplexityExplanation: '1D array stores n states. 2D array stores m×n states (can often optimize to O(n))',
         keyPoints: [
           '1D DP (Fibonacci, Climbing Stairs)',
           '2D DP (Grid, LCS)',
@@ -797,6 +881,14 @@ def uniquePaths(m, n):
         for j in range(1, n):
             dp[i][j] = dp[i-1][j] + dp[i][j-1]
     return dp[m-1][n-1]`,
+        usefulSyntax: [
+          { name: '1D DP', example: 'dp = [0] * (n+1)' },
+          { name: '2D DP', example: 'dp = [[0]*n for _ in range(m)]' },
+          { name: '@lru_cache', example: 'from functools import lru_cache; @lru_cache(maxsize=None)' },
+          { name: 'memo dict', example: 'memo = {}; memo[key] = value' },
+          { name: 'infinity', example: 'float("inf"); float("-inf")' },
+          { name: 'recurrence', example: 'dp[i] = max(dp[i-1], dp[i-2] + arr[i])' }
+        ],
         problems: []
       }
     ]
@@ -809,7 +901,9 @@ def uniquePaths(m, n):
         title: 'Backtracking Patterns',
         concept: 'Explore all possible solutions by trying and undoing choices',
         timeComplexity: 'O(2ⁿ) to O(n!)',
+        timeComplexityExplanation: 'Subsets/combinations = O(2ⁿ) branches. Permutations = O(n!) possibilities. Must explore all',
         spaceComplexity: 'O(n)',
+        spaceComplexityExplanation: 'Recursion depth is at most n (length of path), plus current path storage',
         keyPoints: [
           'Combinations',
           'Permutations',
@@ -854,7 +948,9 @@ def permute(nums):
         title: 'Heap Patterns',
         concept: 'Use heaps for top K, median, and merge problems',
         timeComplexity: 'O(n log k)',
+        timeComplexityExplanation: 'Process n elements, each heap operation (insert/pop) takes O(log k) for k-sized heap',
         spaceComplexity: 'O(k)',
+        spaceComplexityExplanation: 'Maintain heap of size k (for top k problems), not storing all n elements',
         keyPoints: [
           'Top K Elements (Min/Max Heap)',
           'K Closest Points',
@@ -878,6 +974,15 @@ def findKthLargest(nums, k):
         if num > heap[0]:
             heapq.heapreplace(heap, num)
     return heap[0]`,
+        usefulSyntax: [
+          { name: 'heappush/pop', example: 'import heapq; heapq.heappush(h, x); heapq.heappop(h)' },
+          { name: 'heapify', example: 'heapq.heapify(list)  # O(n) in-place' },
+          { name: 'nlargest', example: 'heapq.nlargest(k, arr)' },
+          { name: 'nsmallest', example: 'heapq.nsmallest(k, arr)' },
+          { name: 'max-heap', example: 'heapq.heappush(h, -x)  # negate for max' },
+          { name: 'heapreplace', example: 'heapq.heapreplace(h, item)  # pop+push' },
+          { name: 'peek', example: 'heap[0]  # smallest element' }
+        ],
         problems: []
       }
     ]
@@ -890,7 +995,9 @@ def findKthLargest(nums, k):
         title: 'Trie Data Structure',
         concept: 'Efficient storage and retrieval of strings',
         timeComplexity: 'O(m) where m is word length',
+        timeComplexityExplanation: 'Insert/search traverses m characters, one TrieNode per character',
         spaceComplexity: 'O(n * m)',
+        spaceComplexityExplanation: 'Worst case: n words with average length m, each character needs a TrieNode (shared prefixes reduce space)',
         keyPoints: [
           'Insert and Search Words',
           'Prefix Search',
@@ -921,6 +1028,13 @@ class Trie:
                 return False
             node = node.children[char]
         return node.isWord`,
+        usefulSyntax: [
+          { name: 'children', example: 'self.children = {}  # char -> TrieNode' },
+          { name: 'isWord', example: 'self.isWord = False  # end marker' },
+          { name: 'check char', example: 'char in node.children' },
+          { name: 'add child', example: 'node.children[char] = TrieNode()' },
+          { name: 'traverse', example: 'node = node.children[char]' }
+        ],
         problems: []
       }
     ]
@@ -933,7 +1047,9 @@ class Trie:
         title: 'Interval Patterns',
         concept: 'Merge, insert, and find overlapping intervals',
         timeComplexity: 'O(n log n)',
+        timeComplexityExplanation: 'Sorting intervals takes O(n log n), then single pass through sorted intervals is O(n)',
         spaceComplexity: 'O(n)',
+        spaceComplexityExplanation: 'Storing merged intervals, worst case all n intervals are non-overlapping',
         keyPoints: [
           'Merge Intervals',
           'Insert Interval',

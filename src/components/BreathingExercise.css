@@ -1,0 +1,150 @@
+.breathing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.breathing-overlay.fade-out {
+  animation: fadeOut 0.5s ease;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.breathing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.breathing-circle-container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breathing-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+  transition: all 0.3s ease;
+}
+
+.breathing-circle.inhale {
+  animation: breatheIn 4s ease-in-out;
+}
+
+.breathing-circle.exhale {
+  animation: breatheOut 6s ease-in-out;
+}
+
+@keyframes breatheIn {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 1;
+  }
+}
+
+@keyframes breatheOut {
+  0% {
+    transform: scale(2.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.breathing-text {
+  font-size: 32px;
+  font-weight: 600;
+  color: white;
+  font-family: var(--sans);
+  text-align: center;
+  letter-spacing: 2px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.breathing-cycle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--mono);
+  text-align: center;
+}
+
+.breathing-hint {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--sans);
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .breathing-circle-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .breathing-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .breathing-text {
+    font-size: 24px;
+  }
+
+  .breathing-cycle {
+    font-size: 14px;
+  }
+
+  .breathing-hint {
+    font-size: 12px;
+  }
+}

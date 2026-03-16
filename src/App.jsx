@@ -3,10 +3,11 @@ import { patterns } from './data/patterns'
 import SlideViewer from './components/SlideViewer'
 import Sidebar from './components/Sidebar'
 import HomePage from './components/HomePage'
+import TestPage from './pages/TestPage'
 import './App.css'
 
 function App() {
-  const [viewMode, setViewMode] = useState('home'); // 'home' or 'pattern'
+  const [viewMode, setViewMode] = useState('home'); // 'home', 'pattern', or 'test'
   const [currentPatternIndex, setCurrentPatternIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
@@ -64,6 +65,11 @@ function App() {
         case 'H':
           e.preventDefault();
           goToHome();
+          break;
+        case 't':
+        case 'T':
+          e.preventDefault();
+          setViewMode('test');
           break;
         default:
           break;
@@ -123,7 +129,15 @@ function App() {
   if (viewMode === 'home') {
     return (
       <div className="app">
-        <HomePage patterns={patterns} onPatternSelect={goToPattern} />
+        <HomePage patterns={patterns} onPatternSelect={goToPattern} onViewTest={() => setViewMode('test')} />
+      </div>
+    );
+  }
+
+  if (viewMode === 'test') {
+    return (
+      <div className="app">
+        <TestPage onBack={goToHome} />
       </div>
     );
   }
