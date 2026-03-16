@@ -1,0 +1,192 @@
+.home-page {
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-y: auto;
+  padding: 60px 80px 80px;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 60px;
+  text-align: left;
+}
+
+.page-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0 0 12px 0;
+  letter-spacing: -1px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  margin: 0;
+}
+
+/* Categories Grid */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+/* Category Section */
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Category Card - No background, just container */
+.category-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Patterns List */
+.patterns-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Pattern Block - Orange/Rust colored individual blocks */
+.pattern-block {
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 8px;
+  padding: 18px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pattern-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pattern-block:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pattern-block-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.4;
+}
+
+.pattern-block-count {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--mono);
+  font-weight: 500;
+}
+
+/* Scrollbar styling */
+.home-page::-webkit-scrollbar {
+  width: 10px;
+}
+
+.home-page::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+.home-page::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 5px;
+}
+
+.home-page::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-border);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .categories-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 40px 24px 60px;
+  }
+
+  .page-header {
+    margin-bottom: 40px;
+  }
+
+  .page-title {
+    font-size: 36px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .category-title {
+    font-size: 24px;
+  }
+
+  .category-card {
+    padding: 24px;
+  }
+
+  .topic-name {
+    font-size: 16px;
+  }
+
+  .subtopics-preview {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    padding: 32px 16px 40px;
+  }
+
+  .page-title {
+    font-size: 28px;
+  }
+
+  .category-title {
+    font-size: 20px;
+  }
+
+  .category-card {
+    padding: 20px;
+  }
+
+  .topics-list {
+    gap: 12px;
+  }
+
+  .topic-name {
+    font-size: 15px;
+  }
+}
