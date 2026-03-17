@@ -265,7 +265,7 @@ utils/               # Pure utility functions
 
 hooks/               # Custom React hooks
   useLocalStorage.js
-  useKeyboardNav.js
+  useKeyboardNav.js 
 ```
 
 ## Resources
