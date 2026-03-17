@@ -4,7 +4,7 @@ export const patterns = [
     title: 'Sliding Window',
     slides: [
       {
-        title: '5 Variations of Sliding Window',
+        title: 'Classic Pattern',
         concept: 'Used for problems involving contiguous subarrays or substrings',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'Each element is visited at most twice (once by end pointer, once by start pointer)',
@@ -17,6 +17,7 @@ export const patterns = [
           'Product Constraint: Count subarrays with product < k',
           'Number Constraint: At most k occurrences of something'
         ],
+        mnemonic: 'SEAS: Start=0, Expand with end, Add to window, Shrink while invalid',
         template: `def slidingWindow(arr):
     start, result = 0, 0
     for end in range(len(arr)):
@@ -60,6 +61,7 @@ export const patterns = [
           'When duplicate found, shrink window from left',
           'Example: "zxyzxyz" → "xyz" (length 3)'
         ],
+        mnemonic: 'SET-STAR: SET tracks chars, Shrink Till duplicate gone, Add char, Record max',
         template: `def lengthOfLongestSubstring(s):
     seen = set()
     left, maxLen = 0, 0
@@ -100,6 +102,7 @@ export const patterns = [
           'Slide the window one element at a time',
           'Example: Max profit in 4 consecutive days'
         ],
+        mnemonic: 'SLIDE: Sum first k, Loop from k, Increment sum, Drop old, Evaluate max',
         template: `def maxSumFixedWindow(nums, k):
     curSum = sum(nums[:k])
     maxSum = curSum
@@ -130,6 +133,7 @@ export const patterns = [
           'Shrink window when sum exceeds k',
           'Works for positive numbers'
         ],
+        mnemonic: 'EAST: Expand adding to total, Always check sum > k, Shrink removing left, Track maxLen',
         template: `def longestSubarraySum(nums, k):
     left, total, maxLen = 0, 0, 0
 
@@ -162,6 +166,7 @@ export const patterns = [
           'Every new element adds (right - left + 1) subarrays',
           'Example: [10,5,2,6] with k=100 has 8 valid subarrays'
         ],
+        mnemonic: 'MIDAS: Multiply into product, If ≥k then divide, Add (right-left+1), Sum all counts',
         template: `def numSubarrayProductLessThanK(nums, k):
     if k <= 1:
         return 0
@@ -196,6 +201,7 @@ export const patterns = [
           'Example: At most one "L" character',
           '"llttlltlll" → "ltt" (indices 4-6, length 3)'
         ],
+        mnemonic: 'COUNT: Check char match, Observe if exceeds k, Undo from left, Note maxLen, Track result',
         template: `def longestSubstringWithKChars(s, char, k):
     left, count, maxLen = 0, 0, 0
 
@@ -225,7 +231,7 @@ export const patterns = [
     title: 'Two Pointers',
     slides: [
       {
-        title: 'Two Pointers Pattern',
+        title: 'Classic Pattern',
         concept: 'Use two pointers, typically starting at different positions, moving based on conditions',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'Each element visited once with pointers moving toward each other',
@@ -237,6 +243,7 @@ export const patterns = [
           'Works great on sorted arrays',
           'Helps reduce time complexity from O(n²) to O(n)'
         ],
+        mnemonic: 'MEET: Move from ends/start, Evaluate condition, Execute pointer shift, Track result',
         template: `# Opposite Direction
 def twoPointers(arr):
     left, right = 0, len(arr) - 1
@@ -272,7 +279,7 @@ def fastSlow(arr):
         problems: []
       },
       {
-        title: 'Example 1: Palindrome Check',
+        title: 'Variation 1: Palindrome Check',
         concept: 'Check if a string is a palindrome using two pointers',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'At most n/2 comparisons, checking half the string from both ends',
@@ -283,6 +290,7 @@ def fastSlow(arr):
           'Move towards center comparing characters',
           'Return false if mismatch found'
         ],
+        mnemonic: 'MIRROR: Match chars from ends, If different return False, Repeat inward, Result True',
         template: `def isPalindrome(word):
     L, R = 0, len(word) - 1
     while L < R:
@@ -370,7 +378,7 @@ def fastSlow(arr):
         }
       },
       {
-        title: 'Example 2: Two Sum (Sorted Array)',
+        title: 'Variation 2: Two Sum (Sorted Array)',
         concept: 'Find two numbers in sorted array that sum to target',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'Pointers meet in middle at most after n steps, each element considered once',
@@ -382,6 +390,7 @@ def fastSlow(arr):
           'If sum too small, move left pointer right',
           'Assumes exactly one solution exists'
         ],
+        mnemonic: 'SUM: Start ends, Undershoot→left++, Match→return, More→right--',
         template: `def targetSum(nums, target):
     L, R = 0, len(nums) - 1
     while L < R:
@@ -408,7 +417,7 @@ def fastSlow(arr):
     title: 'Monotonic Stack',
     slides: [
       {
-        title: 'Monotonic Stack Pattern',
+        title: 'Classic Pattern',
         concept: 'Maintain a stack that keeps elements in increasing or decreasing order',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'Each element pushed and popped at most once, amortized O(1) per element',
@@ -420,6 +429,7 @@ def fastSlow(arr):
           'Great for finding next greater/smaller element',
           'Each element pushed and popped at most once'
         ],
+        mnemonic: 'STACK: Store indices, Test top against current, Answer pops, Collect result, Keep pushing',
         template: `def nextGreaterElement(arr):
     result = [-1] * len(arr)
     stack = []  # stores indices
@@ -458,7 +468,7 @@ def nextSmallerElement(arr):
         problems: []
       },
       {
-        title: 'Example: Daily Temperatures',
+        title: 'Variation 1: Daily Temperatures',
         concept: 'Find how many days until a warmer temperature',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'Each temperature pushed and popped from stack at most once',
@@ -470,6 +480,7 @@ def nextSmallerElement(arr):
           'When warmer temp found, pop and calculate difference',
           'Result is days to wait, not the temperature'
         ],
+        mnemonic: 'WARMER: While current > top, Answer = i - stackInd, Remove from stack, Must push [t,i], End return res',
         template: `def dailyTemperatures(temperatures):
     res = [0] * len(temperatures)
     stack = []  # stores [temp, index]
@@ -497,7 +508,7 @@ def nextSmallerElement(arr):
     title: 'Prefix Sum',
     slides: [
       {
-        title: 'Prefix Sum Pattern',
+        title: 'Classic Pattern',
         concept: 'Calculate the running sum of a subarray efficiently',
         timeComplexity: 'O(n) preprocessing, O(1) per query',
         timeComplexityExplanation: 'Build prefix array in O(n), then each range sum query takes O(1) using subtraction',
@@ -509,6 +520,7 @@ def nextSmallerElement(arr):
           'Can be extended to 2D arrays',
           'Useful with hash maps for subarray sum problems'
         ],
+        mnemonic: 'BUILD-QUERY: Build prefix[0]=0, Unify sums, Indexed cumulative, Loop add, Difference for queries, Query in O(1), Use right-left, Result fast',
         template: `def prefixSum(arr):
     prefix = [0]
     for i in range(len(arr)):
@@ -546,7 +558,7 @@ def subarraySum(arr, k):
         problems: []
       },
       {
-        title: 'Class-Based Implementation',
+        title: 'Variation 1: Class-Based Implementation',
         concept: 'Reusable prefix sum class for multiple range queries',
         timeComplexity: 'O(n) init, O(1) per query',
         timeComplexityExplanation: 'Constructor builds prefix array in O(n), each rangeSum call is O(1) arithmetic',
@@ -558,6 +570,7 @@ def subarraySum(arr, k):
           'Handle edge cases: left > 0 check',
           'Efficient for multiple queries on same array'
         ],
+        mnemonic: 'CACHE: Cumulative sums Array, Check left>0, Handle edge, Extract with prefix[r]-prefix[l-1]',
         template: `class PrefixSum:
     def __init__(self, nums):
         self.prefix = []
@@ -587,7 +600,7 @@ def subarraySum(arr, k):
     title: 'Binary Search',
     slides: [
       {
-        title: 'Classic',
+        title: 'Classic Pattern',
         concept: 'Search in a sorted array. Cut the array by half each time. Return the target.',
         timeComplexity: 'O(log n)',
         timeComplexityExplanation: 'Search space halved each iteration: n → n/2 → n/4 → ... → 1, which is log₂(n) steps',
@@ -599,6 +612,7 @@ def subarraySum(arr, k):
           'Adjust search range based on comparison',
           'Return -1 if not found'
         ],
+        mnemonic: 'HALF: High=end, And low=0, Loop while low≤high, Find mid, match→return / <target→right / >target→left',
         template: `def binarySearch(arr, target):
     low, high = 0, len(arr) - 1
 
@@ -628,7 +642,7 @@ def subarraySum(arr, k):
         problems: []
       },
       {
-        title: 'Left-most Occurrence',
+        title: 'Variation 1: Left-most Occurrence',
         concept: 'Given an array where the target is a duplicate element, find the left-most occurrence (first) of the target.',
         timeComplexity: 'O(log n)',
         timeComplexityExplanation: 'Same binary search logic, search space halved each iteration, log₂(n) iterations',
@@ -640,6 +654,7 @@ def subarraySum(arr, k):
           'Low pointer ends at first occurrence',
           'Return low at the end'
         ],
+        mnemonic: 'LEFT: Low ends at First, <target→low=mid+1, ≥target→high=mid-1, Finally return low',
         template: `def leftmostOccurrence(arr, target):
     low, high = 0, len(arr) - 1
 
@@ -661,7 +676,7 @@ def subarraySum(arr, k):
         problems: []
       },
       {
-        title: 'Right-most Occurrence',
+        title: 'Variation 2: Right-most Occurrence',
         concept: 'Given an array where the target is a duplicate element, find the right-most (last) occurrence of the target.',
         timeComplexity: 'O(log n)',
         timeComplexityExplanation: 'Binary search halves search space each time, log₂(n) iterations to find last occurrence',
@@ -673,6 +688,7 @@ def subarraySum(arr, k):
           'High pointer ends at last occurrence',
           'Return high at the end'
         ],
+        mnemonic: 'RIGHT: Return high, ≤target→low=mid+1, >target→high=mid-1, High ends at last, Try searching right',
         template: `def rightmostOccurrence(arr, target):
     low, high = 0, len(arr) - 1
 
@@ -694,7 +710,7 @@ def subarraySum(arr, k):
         problems: []
       },
       {
-        title: 'Search Range',
+        title: 'Variation 3: Search Range',
         concept: 'Perform binary search on a range of elements, instead of an array.',
         timeComplexity: 'O(log n)',
         timeComplexityExplanation: 'Range halved each iteration, takes log₂(high - low) steps to converge',
@@ -706,6 +722,7 @@ def subarraySum(arr, k):
           'Minimize or maximize based on problem',
           'Low ends up at the minimum valid answer'
         ],
+        mnemonic: 'CHECK: Check(mid) for validity, High=mid if valid, Else low=mid+1, Converge to min, Keep searching',
         template: `def searchRange(low, high):
     while low < high:
         mid = (low + high) // 2
@@ -731,7 +748,7 @@ def subarraySum(arr, k):
     title: 'Linked Lists',
     slides: [
       {
-        title: 'Linked List Patterns',
+        title: 'Classic Pattern',
         concept: 'Master common linked list manipulation techniques',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'Most linked list operations require traversing n nodes once',
@@ -743,6 +760,7 @@ def subarraySum(arr, k):
           'Merge Two Lists',
           'Dummy Node Technique'
         ],
+        mnemonic: 'REVERSE: Remember prev=None, Each step save next, Verse curr.next to prev, End: prev=curr curr=next, Return prev, Same for fast/slow',
         template: `# Fast & Slow Pointers
 def hasCycle(head):
     slow = fast = head
@@ -772,7 +790,7 @@ def reverseList(head):
     title: 'Trees',
     slides: [
       {
-        title: 'Tree Traversal Patterns',
+        title: 'Classic Pattern',
         concept: 'DFS and BFS approaches for tree problems',
         timeComplexity: 'O(n)',
         timeComplexityExplanation: 'Visit each of n nodes exactly once during traversal',
@@ -784,6 +802,7 @@ def reverseList(head):
           'Recursive vs Iterative',
           'Path Sum Problems'
         ],
+        mnemonic: 'DFS-BFS: Depth→recursion stack, Breadth→queue, For each: check null, Stack/Queue children, Return result',
         template: `# DFS - Inorder
 def inorder(root):
     if not root:
@@ -813,7 +832,7 @@ def levelOrder(root):
     title: 'Graphs',
     slides: [
       {
-        title: 'Graph Traversal',
+        title: 'Classic Pattern',
         concept: 'DFS, BFS, and topological sort for graphs',
         timeComplexity: 'O(V + E)',
         timeComplexityExplanation: 'Visit all V vertices and explore all E edges once (adjacency list representation)',
@@ -825,6 +844,7 @@ def levelOrder(root):
           'Topological Sort (Kahn\'s Algorithm)',
           'Cycle Detection'
         ],
+        mnemonic: 'VISITED: Visit node, Initialize visited set, Stack/Queue for traversal, Iterate neighbors, Track seen, End when empty, Done',
         template: `# DFS
 def dfs(graph, node, visited):
     if node in visited:
@@ -852,7 +872,7 @@ def bfs(graph, start):
     title: 'Dynamic Programming',
     slides: [
       {
-        title: 'DP Patterns',
+        title: 'Classic Pattern',
         concept: 'Breaking down problems into overlapping subproblems',
         timeComplexity: 'O(n) to O(n²)',
         timeComplexityExplanation: '1D DP fills n states once = O(n). 2D DP fills m×n grid = O(m×n)',
@@ -864,6 +884,7 @@ def bfs(graph, start):
           'Knapsack (0/1, Unbounded)',
           'Top-down (Memoization) vs Bottom-up (Tabulation)'
         ],
+        mnemonic: 'STAMP: State definition, Transition equation, Accumulate in table/memo, Memoize results, Plan base cases',
         template: `# 1D DP - Climbing Stairs
 def climbStairs(n):
     if n <= 2:
@@ -898,7 +919,7 @@ def uniquePaths(m, n):
     title: 'Backtracking',
     slides: [
       {
-        title: 'Backtracking Patterns',
+        title: 'Classic Pattern',
         concept: 'Explore all possible solutions by trying and undoing choices',
         timeComplexity: 'O(2ⁿ) to O(n!)',
         timeComplexityExplanation: 'Subsets/combinations = O(2ⁿ) branches. Permutations = O(n!) possibilities. Must explore all',
@@ -910,6 +931,7 @@ def uniquePaths(m, n):
           'Subsets',
           'N-Queens, Sudoku Solver'
         ],
+        mnemonic: 'CHOOSE-EXPLORE-UNCHOOSE: Choose option, Explore recursively, Undo choice (backtrack)',
         template: `# Subsets
 def subsets(nums):
     result = []
@@ -945,7 +967,7 @@ def permute(nums):
     title: 'Heaps/Priority Queue',
     slides: [
       {
-        title: 'Heap Patterns',
+        title: 'Classic Pattern',
         concept: 'Use heaps for top K, median, and merge problems',
         timeComplexity: 'O(n log k)',
         timeComplexityExplanation: 'Process n elements, each heap operation (insert/pop) takes O(log k) for k-sized heap',
@@ -957,6 +979,7 @@ def permute(nums):
           'Merge K Sorted Lists',
           'Find Median from Data Stream'
         ],
+        mnemonic: 'HEAP: Heapify initial data, Extract/push as needed, Always O(log k), Pop to get min/max',
         template: `import heapq
 
 # Top K Elements
@@ -992,7 +1015,7 @@ def findKthLargest(nums, k):
     title: 'Tries',
     slides: [
       {
-        title: 'Trie Data Structure',
+        title: 'Classic Pattern',
         concept: 'Efficient storage and retrieval of strings',
         timeComplexity: 'O(m) where m is word length',
         timeComplexityExplanation: 'Insert/search traverses m characters, one TrieNode per character',
@@ -1004,6 +1027,7 @@ def findKthLargest(nums, k):
           'Word Dictionary',
           'Autocomplete Systems'
         ],
+        mnemonic: 'TRIE: Traverse each char, Root starts empty, Insert creates nodes, End marks isWord',
         template: `class TrieNode:
     def __init__(self):
         self.children = {}
@@ -1044,7 +1068,7 @@ class Trie:
     title: 'Intervals',
     slides: [
       {
-        title: 'Interval Patterns',
+        title: 'Classic Pattern',
         concept: 'Merge, insert, and find overlapping intervals',
         timeComplexity: 'O(n log n)',
         timeComplexityExplanation: 'Sorting intervals takes O(n log n), then single pass through sorted intervals is O(n)',
@@ -1056,6 +1080,7 @@ class Trie:
           'Non-overlapping Intervals',
           'Meeting Rooms'
         ],
+        mnemonic: 'SORT-MERGE: Sort by start, Overlap check, Resolve by merging, Track merged list, Merge end=max(ends)',
         template: `# Merge Intervals
 def merge(intervals):
     intervals.sort(key=lambda x: x[0])

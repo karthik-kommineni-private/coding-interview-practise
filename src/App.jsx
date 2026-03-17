@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { patterns } from './data/patterns'
-import SlideViewer from './components/SlideViewer'
-import Sidebar from './components/Sidebar'
-import HomePage from './components/HomePage'
-import TestPage from './pages/TestPage'
+import SlideViewer from './pages/SlideViewer/SlideViewer'
+import Sidebar from './components/layout/Sidebar'
+import HomePage from './pages/HomePage/HomePage'
+import TestPage from './pages/TestPage/TestPage'
 import './App.css'
 
 function App() {

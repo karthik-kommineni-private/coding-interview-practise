@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './games.css';
+import '../games.css';
 
 export default function GuessTheNumber() {
   const [targetNumber, setTargetNumber] = useState(null);

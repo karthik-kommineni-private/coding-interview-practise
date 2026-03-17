@@ -10,44 +10,6 @@
   box-sizing: border-box;
 }
 
-.breathing-trigger-btn {
-  position: fixed;
-  right: 32px;
-  bottom: 32px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);
-  transition: all 0.3s ease;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: breathePulse 3s ease-in-out infinite;
-}
-
-.breathing-trigger-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 24px rgba(34, 197, 94, 0.6);
-}
-
-.breathing-trigger-btn:active {
-  transform: scale(0.95);
-}
-
-@keyframes breathePulse {
-  0%, 100% {
-    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);
-  }
-  50% {
-    box-shadow: 0 4px 24px rgba(34, 197, 94, 0.7);
-  }
-}
-
 /* Page Header */
 .page-header {
   position: relative;
@@ -214,14 +176,6 @@
 @media (max-width: 768px) {
   .home-page {
     padding: 24px 20px;
-  }
-
-  .breathing-trigger-btn {
-    right: 20px;
-    bottom: 20px;
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
   }
 
   .page-header {

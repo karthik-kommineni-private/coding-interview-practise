@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './games.css';
+import '../games.css';
 
 export default function CoffeeShopWalk() {
   const streetLength = 1000; // meters

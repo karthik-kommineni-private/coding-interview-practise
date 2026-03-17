@@ -1,0 +1,161 @@
+.zen-hub {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* Main FAB Button */
+.zen-fab {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-border);
+  background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(170, 59, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.zen-fab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.zen-fab:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 32px rgba(170, 59, 255, 0.4);
+}
+
+.zen-fab:hover::before {
+  opacity: 1;
+}
+
+.zen-fab:active {
+  transform: scale(0.95);
+}
+
+.zen-fab.active {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+/* Vertical Menu */
+.zen-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zen-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 32px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.zen-menu-item:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  transform: translateX(-4px);
+  box-shadow: 0 6px 16px rgba(170, 59, 255, 0.2);
+}
+
+.zen-menu-icon {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.zen-menu-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Feature Container */
+.zen-feature-container {
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .zen-hub {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .zen-fab {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .zen-menu-item {
+    min-width: 120px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .zen-menu-icon {
+    font-size: 18px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .zen-fab {
+    box-shadow: 0 8px 24px rgba(170, 59, 255, 0.4);
+  }
+
+  .zen-fab:hover {
+    box-shadow: 0 12px 32px rgba(170, 59, 255, 0.5);
+  }
+
+  .zen-menu-item {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}

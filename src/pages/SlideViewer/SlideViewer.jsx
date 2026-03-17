@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import './SlideViewer.css';
-import CodeBlock from './CodeBlock';
-import AlgorithmVisualizer from './AlgorithmVisualizer';
-import CodePractice from './CodePractice';
+import CodeBlock from '../../components/code/CodeBlock';
+import AlgorithmVisualizer from '../../components/AlgorithmVisualizer';
+import CodePractice from '../../components/CodePractice';
+import { getGameForPattern } from '../../data/gameRegistry';
 
 function SlideViewer({ pattern, slide, slideIndex, totalSlides, onNext, onPrev, isFirstSlide, onBackToHome }) {
   const [showSyntax, setShowSyntax] = useState(false);
+  const [showGame, setShowGame] = useState(false);
+
+  // Get game info for this pattern (if available)
+  const gameInfo = getGameForPattern(pattern.id);
+  const GameComponent = gameInfo?.component;
 
   return (
     <div className="slide-viewer">
@@ -61,6 +67,15 @@ function SlideViewer({ pattern, slide, slideIndex, totalSlides, onNext, onPrev, 
           </div>
         )}
 
+        {slide.mnemonic && (
+          <div className="mnemonic-section">
+            <h3>🧠 Remember This</h3>
+            <div className="mnemonic-box">
+              <span className="mnemonic-text">{slide.mnemonic}</span>
+            </div>
+          </div>
+        )}
+
         {slide.template && (
           <div className="template-section">
             <h3>Template</h3>
@@ -88,6 +103,35 @@ function SlideViewer({ pattern, slide, slideIndex, totalSlides, onNext, onPrev, 
               </div>
             )}
             <CodePractice template={slide.template} patternTitle={slide.title} />
+          </div>
+        )}
+
+        {/* Interactive Game Section - Only show on first slide if game available */}
+        {gameInfo && slideIndex === 0 && (
+          <div className="interactive-game-section">
+            <div className="game-header">
+              <h3>🎮 Interactive Practice</h3>
+              <p className="game-description">{gameInfo.description}</p>
+            </div>
+
+            <button
+              className={`game-toggle-btn ${showGame ? 'active' : ''}`}
+              onClick={() => setShowGame(!showGame)}
+            >
+              {showGame ? '▼ Hide Game' : '▶ Try Interactive Game'}
+            </button>
+
+            {showGame && (
+              <div className="game-container">
+                <div className="game-info">
+                  <span className={`game-difficulty ${gameInfo.difficulty}`}>
+                    {gameInfo.difficulty}
+                  </span>
+                  <h4>{gameInfo.title}</h4>
+                </div>
+                {GameComponent && <GameComponent />}
+              </div>
+            )}
           </div>
         )}
 

@@ -18,21 +18,36 @@ A comprehensive, interactive learning platform that presents coding patterns in 
 - **Development Server**: Vite dev server
 - **Port**: http://localhost:5174/ (or 5173)
 
-## Project Structure
+## Project Structure (Industry Standard)
 ```
 src/
-├── App.jsx                 # Main app component with navigation logic
-├── App.css                 # App layout styles
-├── index.css               # Global styles and CSS variables
-├── main.jsx               # React entry point
+├── main.jsx                    # Application entry point
+├── App.jsx                     # Root component with routing logic
+├── App.css                     # Root component styles
+├── styles/
+│   └── index.css              # Global styles and CSS variables
+├── components/
+│   ├── layout/                # Layout components (Sidebar)
+│   ├── code/                  # Code display variants (CodeBlock, etc.)
+│   ├── zen/                   # Focus features (AmbientSound, Pomodoro, etc.)
+│   └── games/                 # Interactive learning games
+├── pages/
+│   ├── HomePage/              # Landing page with pattern categories
+│   ├── SlideViewer/           # Pattern slide viewer
+│   └── TestPage/              # Interactive games page
 ├── data/
-│   └── patterns.js        # All coding patterns data
-└── components/
-    ├── SlideViewer.jsx    # Displays pattern slides with code/examples
-    ├── SlideViewer.css    # Slide viewer styling
-    ├── Sidebar.jsx        # Navigation sidebar
-    └── Sidebar.css        # Sidebar styling
+│   └── patterns.js            # All coding patterns data
+└── assets/
+    └── sounds/                # Audio files for ambient features
 ```
+
+**Key organization principles:**
+- **Component co-location**: Each component in its own folder with JSX + CSS
+- **Feature-based grouping**: Components organized by domain (layout, code, zen, games)
+- **Pages vs Components**: Clear separation between routes and reusable components
+- **Barrel exports**: `index.js` files for cleaner imports
+
+See `src/README.md` for detailed structure documentation.
 
 ## Data Structure
 

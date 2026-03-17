@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './games.css';
+import '../games.css';
 
 export default function MazeExplorer() {
   const GRID_SIZE = 6;

@@ -1,11 +1,11 @@
 import './TestPage.css';
-import GuessTheNumber from '../components/games/GuessTheNumber';
-import CoffeeShopWalk from '../components/games/CoffeeShopWalk';
-import BrowserHistory from '../components/games/BrowserHistory';
-import CoffeeQueue from '../components/games/CoffeeQueue';
-import NetflixWindow from '../components/games/NetflixWindow';
-import EmergencyRoom from '../components/games/EmergencyRoom';
-import MazeExplorer from '../components/games/MazeExplorer';
+import GuessTheNumber from '../../components/games/GuessTheNumber/GuessTheNumber';
+import CoffeeShopWalk from '../../components/games/CoffeeShopWalk/CoffeeShopWalk';
+import BrowserHistory from '../../components/games/BrowserHistory/BrowserHistory';
+import CoffeeQueue from '../../components/games/CoffeeQueue/CoffeeQueue';
+import NetflixWindow from '../../components/games/NetflixWindow/NetflixWindow';
+import EmergencyRoom from '../../components/games/EmergencyRoom/EmergencyRoom';
+import MazeExplorer from '../../components/games/MazeExplorer/MazeExplorer';
 
 function TestPage({ onBack }) {
   return (
@@ -22,6 +22,10 @@ function TestPage({ onBack }) {
           <p className="test-note">
             Each game maps an algorithm pattern to a relatable, everyday scenario to make learning intuitive and memorable.
           </p>
+          <div className="integration-note">
+            💡 <strong>Tip:</strong> These games are also available directly in their corresponding pattern slides on the home page!
+            Learn the theory first, then practice with the game.
+          </div>
         </div>
       </header>
 
